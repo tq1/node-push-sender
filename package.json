@@ -1,0 +1,22 @@
+{
+  "name": "node-push-sender",
+  "version": "0.0.1",
+  "description": "Send push notifications to GCM, APNS, MPNS and WNS",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "push",
+    "notification",
+    "gcm",
+    "apns",
+    "wns",
+    "mpns"
+  ],
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
