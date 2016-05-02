@@ -14,4 +14,4 @@ It is based on already existent platform-specific open source libraries: [node-g
 
 ## Installation
 
-There is no support for installation via npm yet.
+$ npm install node-push-sender
