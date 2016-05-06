@@ -14,17 +14,15 @@ module.exports = (apns, PushResponse) ->
       targets = if target.constructor is Array then target else [target]
       @callback = done
       @sender.pushNotification content, targets
-      #@sender.shutdown()
+      @sender.shutdown()
 
       @sender.on 'transmitted', (notification, device) =>
-        console.log device
         @response.success++
         @response.results.push
           device: device
           success: true
 
       @sender.on 'transmissionError', (errCode, notification, device) =>
-        console.log errCode
         @response.failure++
         @response.results.push
           device: device

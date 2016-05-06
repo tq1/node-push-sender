@@ -8,20 +8,12 @@ module.exports = (apns) ->
       @extras = extras
 
     build: ->
-      payload =
-        category: @extras?.category
-        sound: @extras?.sound
-        "content-available": @extras?.contentAvailable
-        alert:
-          body: @message
-          title: @extras?.title
+      content = new apns.Notification()
 
-      for own key, value of @data
-        payload[key] = value
+      content.setAlertText @message
+      content.badge = 1;
 
-      content = new apns.Notification payload
-
-      content.priority = @extras?.priority
-      content.expiry = @extras?.ttl
+      content.priority = @extras.priority if @extras?.priority?
+      content.expiry = @extras.ttl if @extras?.ttl?
 
       return content
