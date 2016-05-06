@@ -8,7 +8,6 @@ module.exports = (apns, PushResponse) ->
         cert: authorization.cert
         key: authorization.key
       @response = new PushResponse 0, 0, []
-      @callback = null
 
     send: (content, target, done) ->
       targets = if target.constructor is Array then target else [target]
@@ -30,4 +29,4 @@ module.exports = (apns, PushResponse) ->
           errorCode: errCode
 
       @sender.on 'disconnected', () =>
-        @callback null, @response
+        done null, @response
