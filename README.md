@@ -6,7 +6,7 @@ It is based on already existent platform-specific open source libraries: [node-g
 
 ## Features
 
-- Supports Google Cloud Messaging (GCM) for Android devices;
+- Supports Google Cloud Messaging (GCM) for Android devices and Apple Push Notification Service (APNS) for iOS;
 - Sends notifications to multiple devices at once;
 - Supports all GCM [optional parameters](https://developers.google.com/cloud-messaging/http-server-ref#downstream-http-messages-plain-text);
 - Sends custom content to the end user;
