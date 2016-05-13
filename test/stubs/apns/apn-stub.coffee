@@ -42,5 +42,4 @@ module.exports = do ->
     error = e
 
   setResponse: (r) ->
-    console.log r
     response = r
