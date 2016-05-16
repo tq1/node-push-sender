@@ -3,7 +3,7 @@ require('rootpath')()
 assert = require('chai').assert
 sinon = require 'sinon'
 
-gcm = require 'test/stubs/node-gcm-stub'
+gcm = require 'test/stubs/gcm/node-gcm-stub'
 PushResponse = require('src/models/response')()
 GcmSender = require('src/models/gcm/gcm-sender') gcm, PushResponse
 
@@ -46,7 +46,7 @@ describe 'GcmSender', ->
     defaultResponse.success = 1
     gcm.setError null
     gcm.setResponse defaultResponse
-    
+
     gcmSender.send content, singleTarget, (err, res) ->
       assert.isNull err
       assert.equal res.success, 1
@@ -61,7 +61,7 @@ describe 'GcmSender', ->
     defaultResponse.failure = 1
     gcm.setError null
     gcm.setResponse defaultResponse
-    
+
     gcmSender.send content, singleTarget, (err, res) ->
       assert.isNull err
       assert.equal res.success, 0
@@ -93,7 +93,7 @@ describe 'GcmSender', ->
   it 'should handle GCM server error', (done) ->
     gcm.setError defaultServerError
     gcm.setResponse null
-    
+
     gcmSender.send content, multipleTargets, (err, res) ->
       assert.isNotNull err
       assert.isNull res
