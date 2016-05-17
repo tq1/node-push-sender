@@ -23,6 +23,7 @@ module.exports = (apns, PushResponse) ->
 
       @sender.on 'transmissionError', (errCode, notification, device) =>
         @response.failure++
+        @response.success--
         @response.results.push
           device: device
           success: false
