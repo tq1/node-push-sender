@@ -29,5 +29,8 @@ module.exports = (apns, PushResponse) ->
           success: false
           errorCode: errCode
 
-      @sender.on 'disconnected', () =>
+      cb = () =>
+        @sender.removeListener 'disconnected', cb
         done null, @response
+
+      @sender.on 'disconnected', cb
