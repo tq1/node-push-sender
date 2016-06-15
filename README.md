@@ -16,3 +16,8 @@ It is based on already existent platform-specific open source libraries: [node-g
 ## Installation
 
 $ npm install node-push-sender
+
+## Contributing
+
+We encourage you to contribute to node-push-sender! Please check out the
+[contributing guide](.github/CONTRIBUTING.md) for guidelines about how to proceed.
