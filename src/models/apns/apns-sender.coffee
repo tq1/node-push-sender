@@ -29,6 +29,12 @@ module.exports = (apns, PushResponse) ->
           success: false
           errorCode: errCode
 
+      @sender.on 'error', (err) =>
+        done err, @response
+
+      @sender.on 'socketError', (err) =>
+        console.err 'APN socket error: ' + err
+
       cb = () =>
         @sender.removeListener 'disconnected', cb
         done null, @response
