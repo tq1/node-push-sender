@@ -17,6 +17,9 @@ module.exports = (apns) ->
         content.contentAvailable = @extras.contentAvailable
       else
         content.contentAvailable = 1
+      if @data?.action?.identification?
+        content.category =  @data.action.identification
+        delete @data.action
       content.payload = @data
 
       content.priority = @extras.priority if @extras?.priority?

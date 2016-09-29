@@ -14,7 +14,7 @@ var androidPushNotification = {
     }
   },
   "extras":{
-    "timeToLive":"3600"
+    "timeToLive":3600
   }
 };
 
@@ -41,7 +41,7 @@ var iosPushNotification = {
     }
   },
   "extras":{
-    "timeToLive":"3600"
+    "timeToLive":3600
   }
 };
 
