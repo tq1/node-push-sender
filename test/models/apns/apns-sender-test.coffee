@@ -35,7 +35,7 @@ describe 'ApnsSender', ->
 
   it 'should process the response for a single target', (done) ->
     apnsSender.send content, singleTarget, (err, res) ->
-      assert.isNull err
+      assert.notOk err
       assert.equal res.success, 1
       assert.equal res.failure, 1
       done()

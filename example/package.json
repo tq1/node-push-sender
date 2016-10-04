@@ -1,0 +1,14 @@
+{
+  "name": "node-push-sender-example",
+  "version": "0.0.1",
+  "description": "Use node-push-sender to send pushes example",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": "4.4.2"
+  },
+  "dependencies": {
+    "node-push-sender": "file:..",
+    "rootpath": "^0.1.2"
+  }
+}

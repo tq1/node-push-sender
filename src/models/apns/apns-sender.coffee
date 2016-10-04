@@ -23,7 +23,6 @@ module.exports = (apns, PushResponse) ->
 
       @sender.on 'transmissionError', (errCode, notification, device) =>
         @response.failure++
-        @response.success--
         @response.results.push
           device: device
           success: false
@@ -33,7 +32,7 @@ module.exports = (apns, PushResponse) ->
         done err, @response
 
       @sender.on 'socketError', (err) =>
-        console.err 'APN socket error: ' + err
+        console.log 'APN socket error: ' + err
 
       cb = () =>
         @sender.removeListener 'disconnected', cb
