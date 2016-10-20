@@ -21,7 +21,7 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "node-gcm": "^0.14.0",
-    "apn": "^1.7.5",
+    "apn": "^2.1.1",
     "rootpath": "^0.1.2"
   },
   "devDependencies": {
