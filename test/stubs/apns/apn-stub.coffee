@@ -5,7 +5,7 @@ module.exports = do ->
   response = null
   events = require "events"
 
-  class notification
+  class Notification
 
     constructor: (j) ->
       return
@@ -16,24 +16,23 @@ module.exports = do ->
     toJson: ->
       return json
 
-  class connection
+  class Provider
 
     constructor: (auth) ->
       return
 
-    pushNotification: (content, targets) ->
-      return
+    send: (content, targets) ->
+      res =
+        success: []
+        failure: []
+      return res
 
     shutdown: ->
       return
 
-    on: (event, callback) ->
-      callback()
-      return
+  Notification: Notification
 
-  notification: notification
-
-  connection: connection
+  Provider: Provider
 
   setJson: (j) ->
     json = j

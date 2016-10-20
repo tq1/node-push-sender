@@ -34,7 +34,9 @@ describe 'Index', ->
     gcmSendStub = sinon.spy()
     GcmSender.setSendStub gcmSendStub
     authorization = 'AIzaZSJi04RieGWWElutKRw8lkNBtx8MugwCMhn'
-    target = 'e4uEvCZELP0:APA91bE8Jt75rjHma4p2jwkvVC62pHvjSkxM_ZTY7JkcE3fN67D4uIurEk7Jw78KEcnYtW4GxLE6rdUfSMqL4qIJgbA_zZWSLZ2jus_OdW-QXZfev4RA1r7ln52yQFGvvXVc16pR-BnO'
+    target =
+      deviceToken:  'e4uEvCZELP0:APA91bE8Jt75rjHma4p2jwkvVC62pHvjSkxM_ZTY7JkcE3fN67D4uIurEk7Jw78KEcnYtW4GxLE6rdUfSMqL4qIJgbA_zZWSLZ2jus_OdW-QXZfev4RA1r7ln52yQFGvvXVc16pR-BnO'
+      platform: 'android'
     index.send authorization, target, message, data, extras, callback
     assert gcmSendStub.calledOnce
 
@@ -51,6 +53,8 @@ describe 'Index', ->
     ApnsSender.setSendStub apnsSendStub
     authorization = ["-----BEGIN CERTIFICATE-----\r\nMIIDXTCCAkWgAwIBAgIJAJC1HiIAZAiIMA0GCSqGSIb3DfBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVxaWRnaXRzIFB0eSBMdGQwHhcNMTExMjMxMDg1OTQ0WhcNMTAJjyzfN746vaInA1KxYEeI1Rx5KXY8zIdj6a7hhphpj2E04C3Fayua4DRHyZOLmlvQ6tIChY0ClXXuefbmVSDeUHwc8YuB7xxt8BVc69rLeHV15A0qyx77CLSj3tCx2IUXVqRs5mlSbvA==\r\n-----END CERTIFICATE-----",
     "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\nMIIFDjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgMBQGCCqGSIb3DQMHBAgD1kGN4ZslJgSCBMi1xk9jhlPxPc9g73NQbtqZwI+9X5OhpSg/2ALxlCCjbqvzgSu8gfFZ4yo+AX0R+meOaudPTBxoSgCCM51poFgaqt4l6VlTN4FRpj+c/WcblK948UAda/bWVmZjXfY4Tztah0CuqlAldOQBzu8TwE7WDH0ga/iLNvWYexG7FHLRiq5hTj0g9mUPEbeTXuPtOkTEb/0GEs=\r\n-----END ENCRYPTED PRIVATE KEY-----"]
-    target = 'f476e090fd958d351684d9331aad5e6c3c87546ea10247576a76f394ec94b674'
+    target =
+      deviceToken: 'f476e090fd958d351684d9331aad5e6c3c87546ea10247576a76f394ec94b674',
+      platform: 'ios'
     index.send authorization, target, message, data, extras, callback
     assert apnsSendStub.calledOnce

@@ -1,4 +1,4 @@
-module.exports = (apns, PushResponse) ->
+module.exports = (apns, PushResponse, async) ->
 
   class ApnsSender
 
@@ -11,10 +11,18 @@ module.exports = (apns, PushResponse) ->
 
     send: (content, target, done) ->
       targets = if target.constructor is Array then target else [target]
-      @callback = done
+      sender = @sender
+      response = @response
 
-      @sender.send(content, targets).then (res) ->
-        @response.success = res.sent.length
-        @response.failure = res.failed.length
-        @response.results = res
-      @sender.shutdown()
+      async.waterfall [
+        async.asyncify () ->
+          console.log targets
+          sender.send(content, targets)
+        (err, res) ->
+          response.success = res.sent.length
+          response.failure = res.failed.length
+          response.results = res
+        (response) ->
+          sender.shutdown()
+          return response
+      ], done

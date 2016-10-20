@@ -19,6 +19,7 @@ describe 'ApnsMessage', ->
     extras =
       timeToLive: 86400
       priority: 5
+      topic: 'com.node.push.sender'
     done()
 
   it 'should correctly build the notification content', ->
