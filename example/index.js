@@ -48,7 +48,7 @@ var iosAuthentication = {
   "key": "------ BEGIN PRIVATE KEY -------"
 }
 
-pushSender.send(iosAuthentication, iosPushNotification.target, androidPushNotification.message, iosPushNotification.contents, iosPushNotification.extras, function(err, result)
+pushSender.send(iosAuthentication, iosPushNotification.target, iosPushNotification.message, iosPushNotification.contents, iosPushNotification.extras, function(err, result)
 {
   if(err) {
     console.log(err);
