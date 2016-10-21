@@ -38,6 +38,7 @@ var iosPushNotification = {
   },
   "extras":{
     "timeToLive":3600
+    "topic": "com.node.push.sender"
   }
 };
 

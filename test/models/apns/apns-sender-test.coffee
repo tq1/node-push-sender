@@ -38,5 +38,5 @@ describe 'ApnsSender', ->
     apnsSender.send content, singleTarget, (err, res) ->
       assert.notOk err
       assert.equal res.success, 1
-      assert.equal res.failure, 1
+      assert.equal res.failure, 0
       done()

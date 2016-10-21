@@ -15,14 +15,12 @@ module.exports = (apns, PushResponse, async) ->
       response = @response
 
       async.waterfall [
-        async.asyncify () ->
-          console.log targets
+        async.asyncify (cb) ->
           sender.send(content, targets)
-        (err, res) ->
+        (res, cb) ->
           response.success = res.sent.length
           response.failure = res.failed.length
           response.results = res
-        (response) ->
           sender.shutdown()
-          return response
+          cb(null, response)
       ], done

@@ -23,8 +23,8 @@ module.exports = do ->
 
     send: (content, targets) ->
       res =
-        success: []
-        failure: []
+        sent: ['yes']
+        failed: []
       return res
 
     shutdown: ->
