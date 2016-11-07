@@ -8,9 +8,9 @@ module.exports = (apns) ->
       @extras = extras
 
     build: ->
-      content = new apns.notification()
+      content = new apns.Notification()
 
-      content.setAlertText @message
+      content.alert = @message
       content.badge = 1
       content.sound = "default"
       if @extras?.contentAvailable?
@@ -24,5 +24,6 @@ module.exports = (apns) ->
 
       content.priority = @extras.priority if @extras?.priority?
       content.expiry = @extras.timeToLive if @extras?.timeToLive?
+      content.topic = @extras.topic if @extras?.topic?
 
       return content

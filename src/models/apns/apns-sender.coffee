@@ -1,9 +1,9 @@
-module.exports = (apns, PushResponse) ->
+module.exports = (apns, PushResponse, async) ->
 
   class ApnsSender
 
     constructor: (authorization) ->
-      @sender = new apns.connection
+      @sender = new apns.Provider
         production: authorization.production
         cert: authorization.cert
         key: authorization.key
@@ -11,33 +11,16 @@ module.exports = (apns, PushResponse) ->
 
     send: (content, target, done) ->
       targets = if target.constructor is Array then target else [target]
-      @callback = done
-      @sender.pushNotification content, targets
-      @sender.shutdown()
+      sender = @sender
+      response = @response
 
-      @sender.on 'transmitted', (notification, device) =>
-        @response.success++
-        @response.results.push
-          device: device
-          success: true
-
-      @sender.on 'transmissionError', (errCode, notification, device) =>
-        @response.failure++
-        @response.success--
-        @response.results.pop()
-        @response.results.push
-          device: device
-          success: false
-          errorCode: errCode
-
-      @sender.on 'error', (err) =>
-        done err, @response
-
-      @sender.on 'socketError', (err) =>
-        console.log 'APN socket error: ' + err
-
-      cb = () =>
-        @sender.removeListener 'disconnected', cb
-        done null, @response
-
-      @sender.on 'disconnected', cb
+      async.waterfall [
+        async.asyncify (cb) ->
+          sender.send(content, targets)
+        (res, cb) ->
+          response.success = res.sent.length
+          response.failure = res.failed.length
+          response.results = res
+          sender.shutdown()
+          cb(null, response)
+      ], done

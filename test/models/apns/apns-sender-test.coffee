@@ -2,10 +2,11 @@ require('rootpath')()
 
 assert = require('chai').assert
 sinon = require 'sinon'
+async = require 'async'
 
 apns = require 'test/stubs/apns/apn-stub'
 PushResponse = require('src/models/response')()
-ApnsSender = require('src/models/apns/apns-sender') apns, PushResponse
+ApnsSender = require('src/models/apns/apns-sender') apns, PushResponse, async
 
 describe 'ApnsSender', ->
 
@@ -37,5 +38,5 @@ describe 'ApnsSender', ->
     apnsSender.send content, singleTarget, (err, res) ->
       assert.notOk err
       assert.equal res.success, 1
-      assert.equal res.failure, 1
+      assert.equal res.failure, 0
       done()
