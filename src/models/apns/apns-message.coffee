@@ -13,6 +13,8 @@ module.exports = (apns) ->
       content.alert = @message
       content.badge = 1
       content.sound = "default"
+      if @extras?.mutable
+        content.mutableContent = 1
       if @extras?.contentAvailable?
         content.contentAvailable = @extras.contentAvailable
       else
