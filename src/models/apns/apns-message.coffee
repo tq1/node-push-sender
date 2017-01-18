@@ -11,12 +11,15 @@ module.exports = (apns) ->
       content = new apns.notification()
 
       content.setAlertText @message
-      content.badge = 1
       content.sound = "default"
       if @extras?.contentAvailable?
         content.contentAvailable = @extras.contentAvailable
       else
         content.contentAvailable = 1
+      if @extras?.mutable
+        content.mutableContent = 1
+      if @extras?.badge
+        content.badge = @extras.badge
       if @data?.actionId?
         content.category =  @data.actionId
         delete @data.actionId
