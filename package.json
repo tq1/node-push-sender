@@ -1,6 +1,6 @@
 {
   "name": "node-push-sender",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "Send push notifications to GCM, APNS, MPNS and WNS",
   "main": "index.js",
   "scripts": {
