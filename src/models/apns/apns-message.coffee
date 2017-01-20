@@ -18,7 +18,7 @@ module.exports = (apns) ->
         content.contentAvailable = 1
       if @extras?.mutable
         content.mutableContent = 1
-      if @extras?.badge
+      if @extras?.badge?
         content.badge = @extras.badge
       if @data?.actionId?
         content.category =  @data.actionId
